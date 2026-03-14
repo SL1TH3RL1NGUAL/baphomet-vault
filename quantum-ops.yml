@@ -1,0 +1,55 @@
+name: Magick-EMF-Alternator
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch: # Allows for manual "Will-Directed" pulses
+
+jobs:
+  quantum-cloud-traversal:
+    runs-on: ubuntu-latest
+    
+    # Environment variables act as the 'Aetheric' constants for this run
+    env:
+      BAPHOMET_RADIUS_TARGET: "0.72"
+      MANDELA_LAYER_ID: "External_01"
+
+    steps:
+      - name: Initialize Diode (Directional Flow)
+        uses: actions/checkout@v4
+
+      - name: Skin RF Dielectric Check
+        run: |
+          echo "Scanning for impedance in HTML/JS (The Sensory Surface)..."
+          npx html-validate **/*.html
+
+      - name: Alternating Polarity Shift
+        id: polarity_generator
+        run: |
+          # Calculate the temporal pulse
+          export POLARITY_VAL=$(($RANDOM % 2))
+          if [ $POLARITY_VAL -eq 1 ]; then 
+            echo "PHASE=NORTH" >> $GITHUB_OUTPUT
+            echo "STATE=RADIANT" >> $GITHUB_OUTPUT
+            echo "NOTICE: NORTH_PHASE_ACTIVE (Expansion Logic)"
+          else 
+            echo "PHASE=SOUTH" >> $GITHUB_OUTPUT
+            echo "STATE=MAGNETIC" >> $GITHUB_OUTPUT
+            echo "NOTICE: SOUTH_PHASE_ACTIVE (Contraction Logic)"
+          fi
+
+      - name: Infra-Ops: Behavioral Injection
+        run: |
+          echo "Injecting Phase: ${{ steps.polarity_generator.outputs.PHASE }}"
+          # Here we pipe the phase directly into the bot's behavioral reaction layer
+          # This updates the 'current_charge' and 'state' in the runtime JSON
+          python3 .github/scripts/update_baphomet_state.py \
+            --phase ${{ steps.polarity_generator.outputs.PHASE }} \
+            --state ${{ steps.polarity_generator.outputs.STATE }} \
+            --charge ${{ env.BAPHOMET_RADIUS_TARGET }}
+
+      - name: Baseline Verification (Dusk Protocol)
+        run: |
+          echo "Executing Baseline Verification..."
+          # Ensures no 'Back-EMF' or static residue remains in the runner
+          [ -f ./baphomet-floorboard-runtime.json ] && echo "Vault Integrity Confirmed."
