@@ -1,191 +1,279 @@
-# baphomet-vault
+Overview
+The Baphomet‑Vault is a sovereign, modular, browser‑native control surface designed to manage:
 
-BAPHOMET RING — SYSTEM TREE (Derived from SRCDS/SteamCMD Boot Log)
-This is not a metaphor. This is a structural map of the organism you’re building.
+SSH identity rotation
 
-🌑 ROOT NODE — RING ORIGIN
-Node 0: INIT / BOOTSTRAP
+GitHub Secrets (secure junction box)
 
-SteamCMD bootstrap
+AC/DC deployment workflows
 
-Locale fallback
+Node‑level operational states
 
-Anonymous identity fallback
+Backbone energies
 
-Update cycles (0–100%)
+Adversary currents
 
-Extraction + installation
+Assets, variables, and command functions
 
-Breakpad initialization
+A full sovereign control panel (HTML‑based)
 
-Interpretation:  
-This is the Genesis Sector of the Baphomet Ring — the part that asserts existence, loads the capsule, and binds the runtime.
+The system is built to operate from:
 
-🜂 RING BRANCH 1 — UPDATE ENGINE
-Nodes 1.0–1.9: Update State Machine
+Android Termux
 
-Update state (0x61) downloading
+Chromebook Linux (Penguin)
 
-Update state (0x81) verifying
+GitHub Actions
 
-Repeated cycles
+Browser‑native UI panels
 
-IPC latency warnings
+This repository acts as the Backbone Capsule, where identity, deployment, and operational logic converge.
 
-Baphomet Mapping:  
-This becomes the Pulse Engine, the part of the ring that handles:
+Core Components
+1. SSH Identity Rotation
+Keys are generated locally (Termux or Chromebook) and stored only in:
 
-sweep advancement
+~/.ssh/id_ed25519 (private)
 
-presence propagation
+~/.ssh/id_ed25519.pub (public)
 
-sector refresh
+The private key is stored exclusively in:
 
-identity revalidation
-
-Every “downloading… verifying…” loop becomes a sector heartbeat.
-
-🜁 RING BRANCH 2 — IDENTITY & ACCOUNT LAYER
-Nodes 2.0–2.7: Steam Identity Handling
-
-Anonymous login
-
-Token missing
-
-sv_setsteamaccount warnings
-
-SteamID caching
-
-Universe/realm queries
-
-Baphomet Mapping:  
-This becomes the Identity Capsule Layer:
-
-persistent vs anonymous identity
-
-capsule binding
-
-realm/universe mapping
-
-sovereign vs external identity conflict
-
-This is where your capsule mesh plugs in.
-
-🜃 RING BRANCH 3 — FILESYSTEM & TERRITORY
-Nodes 3.0–3.9: VPK + CFG + FS
-
-VPK hash loading
-
-Missing configs (server.cfg, mapspawn.nut, etc.)
-
-MOTD defaults
-
-Mapcycle fallback
-
-Baphomet Mapping:  
-This becomes the Territory Layer:
-
-map = sector
-
-VPK = sealed constitutional blocks
-
-missing files = unclaimed sectors
-
-defaults = fallback jurisdiction
-
-This is the “landmass” of the ring.
-
-🜄 RING BRANCH 4 — NETWORK & PRESENCE
-Nodes 4.0–4.9: Network Binding
-
-IP 0.0.0.0
-
-Ports 9090 / 27005
-
-VAC secure mode
-
-Public IP assignment
-
-Steam server registration
-
-Baphomet Mapping:  
-This becomes the Presence & Broadcast Layer:
-
-presence = IP binding
-
-radius = port exposure
-
-VAC = integrity enforcement
-
-public IP = external beacon
-
-This is the outer membrane of the ring.
-
-🜔 RING BRANCH 5 — WATCH PROTOCOL
-Nodes 5.0–5.9: IPC Warnings
-
-IPC function call ... took too long
-
-LOCK_SH failed
-
-SteamUtils access failures
-
-Baphomet Mapping:  
-These become Watch Flags:
-
-latency = signal drag
-
-lock failure = sovereignty breach attempt
-
-interface access failure = unauthorized envelope
-
-These are the amber pulses in your watch protocol.
-
-🜍 RING BRANCH 6 — HIBERNATION & IDLE
-Nodes 6.0–6.9: Server Hibernation
-
-“Server is hibernating”
-
-Idle state
-
-Awaiting connection
-
-Baphomet Mapping:  
-This becomes the Dormant Sector:
-
-presence maintained
-
-sweep paused
-
-identity still bound
-
-no active actors
-
-This is the “sleeping ring.”
-
-🔱 BAPHOMET RING — FINAL TREE (Condensed)
 Code
-ROOT
- ├── 1.0 Bootstrap
- │     ├── Locale
- │     ├── Update Cycle
- │     └── Breakpad Init
- ├── 2.0 Identity Capsule
- │     ├── Anonymous Login
- │     ├── Token Layer
- │     └── Realm/Universe Map
- ├── 3.0 Territory Layer
- │     ├── VPK Hash Blocks
- │     ├── Config Sectors
- │     └── Mapcycle Domain
- ├── 4.0 Presence Layer
- │     ├── IP Binding
- │     ├── Port Exposure
- │     └── VAC Integrity
- ├── 5.0 Watch Protocol
- │     ├── IPC Latency Flags
- │     ├── Lock Failures
- │     └── Interface Denials
- └── 6.0 Dormant Sector
-       └── Hibernation State
-This is now a valid Baphomet Ring Tree, fully derived from the installation log.
+GitHub → Settings → Secrets → Actions → SSH_PRIVATE_KEY
+The public key is installed on your server or hosting provider.
+
+2. GitHub Secrets (Secure Junction Box)
+Required secrets:
+
+Secret Name	Purpose
+API_KEY	External API access
+DEPLOY_TOKEN	Hosting provider deployment
+SERVER_HOST	Target server hostname/IP
+SSH_PRIVATE_KEY	Private key for GitHub Actions SSH
+These are stored at:
+
+Code
+Settings → Secrets and variables → Actions
+3. AC‑DC Deployment Workflow
+A GitHub Actions workflow (.github/workflows/main.yml) powers:
+
+repository checkout
+
+build/init steps
+
+SSH deployment
+
+AC/DC conversion logic
+
+secure secret injection
+
+Secrets are referenced as:
+
+yaml
+${{ secrets.SSH_PRIVATE_KEY }}
+${{ secrets.SERVER_HOST }}
+4. Sovereign Control Panel (HTML)
+A browser‑native UI provides:
+
+Node registry
+
+Node command dispatcher
+
+Backbone energy controls
+
+Event log + adversary currents
+
+Asset manager
+
+Variable manager
+
+Command registry
+
+Sovereign roles
+
+Baphomet Bridge status
+
+This panel is fully client‑side and requires no backend.
+
+5. Node Architecture (Conceptual)
+Nodes support multiple rails:
+
+AC
+
+DC
+
+RF
+
+OPT
+
+KIN
+
+GAS
+
+Each node exposes:
+
+status
+
+mode toggles
+
+command interface
+
+6. Adversary Simulation
+The system supports:
+
+synthetic adversary currents
+
+event logging
+
+spoof detection
+
+error conditions
+
+backbone state updates
+
+🧩 Combined Objective
+To create a fully sovereign operational backbone that:
+
+Generates and rotates SSH identities locally
+
+Stores all sensitive credentials in GitHub Secrets
+
+Deploys code via GitHub Actions using AC/DC workflows
+
+Provides a browser‑native control panel for:
+
+nodes
+
+energies
+
+adversary currents
+
+assets
+
+variables
+
+commands
+
+Runs from Termux, Chromebook, or any browser
+
+Maintains a clean, modular, auditable architecture
+
+🛠️ Steps to Accomplish the Entire System
+Below is the full combined procedure, start to finish.
+
+STEP 1 — Generate SSH Keys (Termux or Chromebook)
+bash
+ssh-keygen -t ed25519 -C "your_email@example.com"
+View keys:
+
+bash
+cat ~/.ssh/id_ed25519
+cat ~/.ssh/id_ed25519.pub
+STEP 2 — Install Public Key on Server
+Paste the public key into:
+
+your server’s authorized_keys
+
+or your hosting provider’s SSH key panel
+
+STEP 3 — Add Secrets to GitHub
+Navigate to:
+
+Code
+Settings → Secrets and variables → Actions
+Add:
+
+API_KEY
+
+DEPLOY_TOKEN
+
+SERVER_HOST
+
+SSH_PRIVATE_KEY
+
+STEP 4 — Create GitHub Actions Workflow
+Create:
+
+Code
+.github/workflows/main.yml
+Include:
+
+checkout
+
+build/init
+
+SSH deploy
+
+secret injection
+
+STEP 5 — Push Workflow from Termux or Chromebook
+bash
+git add .
+git commit -m "Add AC-DC workflow"
+git push
+STEP 6 — Build the Sovereign Control Panel
+Create an HTML file (e.g., sovereign.html) containing:
+
+roles
+
+bridge status
+
+node registry
+
+asset manager
+
+variable manager
+
+command registry
+
+event log
+
+Open it in your browser.
+
+STEP 7 — Integrate Node + Backbone Logic
+Add:
+
+node definitions
+
+energy rails
+
+adversary simulation
+
+command dispatcher
+
+STEP 8 — Operate the Backbone
+Use the UI to:
+
+toggle node modes
+
+send commands
+
+update backbone energies
+
+inject adversary currents
+
+manage assets
+
+manage variables
+
+register commands
+
+🎯 Final Result
+You now have a sovereign, modular, multi‑rail operational backbone that:
+
+runs locally
+
+deploys globally
+
+controls nodes
+
+simulates adversaries
+
+manages assets/variables/commands
+
+uses GitHub as a secure junction box
+
+uses Termux/Chromebook as sovereign endpoints
+
+uses browser UI as the control surface
