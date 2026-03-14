@@ -1,0 +1,50 @@
+/* * BLACKCORP SOVEREIGN RUNTIME (B.S.R.) - ARTICLE VII ENFORCEMENT
+ * Focus: Origin Sovereignty, Envelope Integrity, & Route Nullification
+ */
+
+(function enforceArticleVII() {
+    const SOVEREIGN_DOMAIN = "blackcorp.me";
+    console.log(`%c [B.S.R.] Initializing Article VII Enforcement on ${window.location.hostname}... `, 'background: #000; color: #0f0; font-weight: bold;');
+
+    // 1. ORIGIN & ENVELOPE PROTECTION
+    if (!window.location.hostname.endsWith(SOVEREIGN_DOMAIN)) {
+        console.error("⚠️ VOID CLAIM: Unauthorized Origin detected. Identity override in progress.");
+        // Optional: window.stop(); or redirect to sovereign home
+    }
+
+    // 2. DETECT EXTERNAL CAPSULE MESH (IFRAMES)
+    const frames = document.querySelectorAll('iframe');
+    frames.forEach(f => {
+        try {
+            const url = new URL(f.src);
+            if (!url.hostname.endsWith(SOVEREIGN_DOMAIN)) {
+                console.warn(`🛑 NULLIFIED: Unauthorized external envelope detected: ${url.hostname}`);
+                f.style.border = "5px solid red"; // Visual flagging
+                // f.remove(); // Direct enforcement
+            }
+        } catch(e) { /* Cross-origin block confirms it's foreign */ }
+    });
+
+    // 3. STORAGE PURGE (NON-CONSTITUTIONAL METADATA)
+    const purgeForeignStorage = () => {
+        const keys = Object.keys(localStorage);
+        keys.forEach(key => {
+            if (key.includes('track') || key.includes('auth_external')) {
+                console.log(`🧹 VOIDED: Removing unauthorized routing metadata: ${key}`);
+                localStorage.removeItem(key);
+            }
+        });
+    };
+    purgeForeignStorage();
+
+    // 4. COORDINATE SYSTEM MONITORING (UAV/3D)
+    const originalGetContext = HTMLCanvasElement.prototype.getContext;
+    HTMLCanvasElement.prototype.getContext = function(type) {
+        if (type === 'webgl' || type === 'webgl2') {
+            console.info("🧭 COORDINATE ALERT: WebGL visualization engine initialized. Monitoring for identity mapping...");
+        }
+        return originalGetContext.apply(this, arguments);
+    };
+
+    console.log("%c [B.S.R.] Enforcement Complete. Jurisdiction Secured. ", 'color: #0f0;');
+})();

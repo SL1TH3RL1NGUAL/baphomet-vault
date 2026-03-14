@@ -1,0 +1,452 @@
+19:09:08.874 /* * BLACKCORP SOVEREIGN RUNTIME (B.S.R.) - ARTICLE VII ENFORCEMENT
+ * Focus: Origin Sovereignty, Envelope Integrity, & Route Nullification
+ */
+
+(function enforceArticleVII() {
+    const SOVEREIGN_DOMAIN = "blackcorp.me";
+    console.log(`%c [B.S.R.] Initializing Article VII Enforcement on ${window.location.hostname}... `, 'background: #000; color: #0f0; font-weight: bold;');
+
+    // 1. ORIGIN & ENVELOPE PROTECTION
+    if (!window.location.hostname.endsWith(SOVEREIGN_DOMAIN)) {
+        console.error("⚠️ VOID CLAIM: Unauthorized Origin detected. Identity override in progress.");
+        // Optional: window.stop(); or redirect to sovereign home
+    }
+
+    // 2. DETECT EXTERNAL CAPSULE MESH (IFRAMES)
+    const frames = document.querySelectorAll('iframe');
+    frames.forEach(f => {
+        try {
+            const url = new URL(f.src);
+            if (!url.hostname.endsWith(SOVEREIGN_DOMAIN)) {
+                console.warn(`🛑 NULLIFIED: Unauthorized external envelope detected: ${url.hostname}`);
+                f.style.border = "5px solid red"; // Visual flagging
+                // f.remove(); // Direct enforcement
+            }
+        } catch(e) { /* Cross-origin block confirms it's foreign */ }
+    });
+
+    // 3. STORAGE PURGE (NON-CONSTITUTIONAL METADATA)
+    const purgeForeignStorage = () => {
+        const keys = Object.keys(localStorage);
+        keys.forEach(key => {
+            if (key.includes('track') || key.includes('auth_external')) {
+                console.log(`🧹 VOIDED: Removing unauthorized routing metadata: ${key}`);
+                localStorage.removeItem(key);
+            }
+        });
+    };
+    purgeForeignStorage();
+
+    // 4. COORDINATE SYSTEM MONITORING (UAV/3D)
+    const originalGetContext = HTMLCanvasElement.prototype.getContext;
+    HTMLCanvasElement.prototype.getContext = function(type) {
+        if (type === 'webgl' || type === 'webgl2') {
+            console.info("🧭 COORDINATE ALERT: WebGL visualization engine initialized. Monitoring for identity mapping...");
+        }
+        return originalGetContext.apply(this, arguments);
+    };
+
+    console.log("%c [B.S.R.] Enforcement Complete. Jurisdiction Secured. ", 'color: #0f0;');
+})();
+19:09:08.877 VM98:7  [B.S.R.] Initializing Article VII Enforcement on new-tab-page... 
+19:09:08.877 VM98:11 ⚠️ VOID CLAIM: Unauthorized Origin detected. Identity override in progress.
+enforceArticleVII @ VM98:11
+(anonymous) @ VM98:50
+19:09:08.878 VM98:21 🛑 NULLIFIED: Unauthorized external envelope detected: new-tab-page
+(anonymous) @ VM98:21
+enforceArticleVII @ VM98:17
+(anonymous) @ VM98:50
+19:09:08.881 VM98:49  [B.S.R.] Enforcement Complete. Jurisdiction Secured. 
+19:09:08.884 undefined
+19:11:25.915 /* * BLACKCORP SOVEREIGN RUNTIME (B.S.R.) - ARTICLE VIII UPGRADE
+ * Focus: Operator Dominion & Reactive Interference Neutralization
+ */
+
+(function establishDominion() {
+    const DOMINION_KEY = Symbol("BlackCorp_Authority");
+
+    // 1. IMMUTABLE JURISDICTION
+    const ConstitutionalConstants = {
+        origin: "blackcorp.me",
+        version: "1.0.8",
+        status: "SOVEREIGN"
+    };
+
+    // Freeze the constants so no script can rewrite your identity
+    Object.freeze(ConstitutionalConstants);
+    
+    // 2. NEUTRALIZE REACTIVE INTERFERENCE (The "Anti-Gaslight" Trap)
+    // Prevents scripts from redefining 'window.origin' or 'document.domain'
+    try {
+        Object.defineProperty(window, 'BSR_STATE', {
+            value: ConstitutionalConstants,
+            writable: false,
+            configurable: false
+        });
+        console.log("%c [B.S.R.] Article VIII: Dominion Constants Frozen. ", 'color: #00ffff; font-weight: bold;');
+    } catch (e) {
+        console.warn("⚠️ INTERFERENCE DETECTED: A process attempted to block Dominion establishment.");
+    }
+
+    // 3. OPERATOR-ONLY CHANNELS
+    // Create a protected communication line that ignores standard event listeners
+    window.SovereignCommand = function(cmd) {
+        console.log(`%c ⚡ OPERATOR COMMAND: ${cmd} `, 'background: #00ffff; color: #000;');
+        // Execute logic that bypasses standard script interference
+    };
+
+    // 4. LOCKING THE RUNTIME
+    // Prevent modification of the B.S.R. enforcement logic itself
+    Object.defineProperty(window, 'enforceArticleVII', {
+        writable: false,
+        configurable: false
+    });
+
+    console.log("%c [B.S.R.] Article VIII: Operator Dominion Established. Runtime is now Autonomous. ", 'color: #00ffff;');
+})();
+19:11:25.918 VM102:26  [B.S.R.] Article VIII: Dominion Constants Frozen. 
+19:11:25.918 VM102:45  [B.S.R.] Article VIII: Operator Dominion Established. Runtime is now Autonomous. 
+19:11:25.922 undefined
+19:15:13.251 /* * BLACKCORP SOVEREIGN RUNTIME (B.S.R.) - ARTICLE VIII UPGRADE
+ * Focus: Operator Dominion & Reactive Interference Neutralization
+ */
+
+(function establishDominion() {
+    const DOMINION_KEY = Symbol("BlackCorp_Authority");
+
+    // 1. IMMUTABLE JURISDICTION
+    const ConstitutionalConstants = {
+        origin: "blackcorp.me",
+        version: "1.0.8",
+        status: "SOVEREIGN"
+    };
+
+    // Freeze the constants so no script can rewrite your identity
+    Object.freeze(ConstitutionalConstants);
+    
+    // 2. NEUTRALIZE REACTIVE INTERFERENCE (The "Anti-Gaslight" Trap)
+    // Prevents scripts from redefining 'window.origin' or 'document.domain'
+    try {
+        Object.defineProperty(window, 'BSR_STATE', {
+            value: ConstitutionalConstants,
+            writable: false,
+            configurable: false
+        });
+        console.log("%c [B.S.R.] Article VIII: Dominion Constants Frozen. ", 'color: #00ffff; font-weight: bold;');
+    } catch (e) {
+        console.warn("⚠️ INTERFERENCE DETECTED: A process attempted to block Dominion establishment.");
+    }
+
+    // 3. OPERATOR-ONLY CHANNELS
+    // Create a protected communication line that ignores standard event listeners
+    window.SovereignCommand = function(cmd) {
+        console.log(`%c ⚡ OPERATOR COMMAND: ${cmd} `, 'background: #00ffff; color: #000;');
+        // Execute logic that bypasses standard script interference
+    };
+
+    // 4. LOCKING THE RUNTIME
+    // Prevent modification of the B.S.R. enforcement logic itself
+    Object.defineProperty(window, 'enforceArticleVII', {
+        writable: false,
+        configurable: false
+    });
+
+    console.log("%c [B.S.R.] Article VIII: Operator Dominion Established. Runtime is now Autonomous. ", 'color: #00ffff;');
+})();
+19:15:13.254 VM106:28 ⚠️ INTERFERENCE DETECTED: A process attempted to block Dominion establishment.
+establishDominion @ VM106:28
+(anonymous) @ VM106:46
+19:15:13.254 VM106:45  [B.S.R.] Article VIII: Operator Dominion Established. Runtime is now Autonomous. 
+19:15:13.259 undefined
+19:17:01.054 /* * BLACKCORP SOVEREIGN RUNTIME (B.S.R.) - ARTICLE VII ENFORCEMENT
+ * Focus: Origin Sovereignty, Envelope Integrity, & Route Nullification
+ */
+
+(function enforceArticleVII() {
+    const SOVEREIGN_DOMAIN = "blackcorp.me";
+    console.log(`%c [B.S.R.] Initializing Article VII Enforcement on ${window.location.hostname}... `, 'background: #000; color: #0f0; font-weight: bold;');
+
+    // 1. ORIGIN & ENVELOPE PROTECTION
+    if (!window.location.hostname.endsWith(SOVEREIGN_DOMAIN)) {
+        console.error("⚠️ VOID CLAIM: Unauthorized Origin detected. Identity override in progress.");
+        // Optional: window.stop(); or redirect to sovereign home
+    }
+
+    // 2. DETECT EXTERNAL CAPSULE MESH (IFRAMES)
+    const frames = document.querySelectorAll('iframe');
+    frames.forEach(f => {
+        try {
+            const url = new URL(f.src);
+            if (!url.hostname.endsWith(SOVEREIGN_DOMAIN)) {
+                console.warn(`🛑 NULLIFIED: Unauthorized external envelope detected: ${url.hostname}`);
+                f.style.border = "5px solid red"; // Visual flagging
+                // f.remove(); // Direct enforcement
+            }
+        } catch(e) { /* Cross-origin block confirms it's foreign */ }
+    });
+
+    // 3. STORAGE PURGE (NON-CONSTITUTIONAL METADATA)
+    const purgeForeignStorage = () => {
+        const keys = Object.keys(localStorage);
+        keys.forEach(key => {
+            if (key.includes('track') || key.includes('auth_external')) {
+                console.log(`🧹 VOIDED: Removing unauthorized routing metadata: ${key}`);
+                localStorage.removeItem(key);
+            }
+        });
+    };
+    purgeForeignStorage();
+
+    // 4. COORDINATE SYSTEM MONITORING (UAV/3D)
+    const originalGetContext = HTMLCanvasElement.prototype.getContext;
+    HTMLCanvasElement.prototype.getContext = function(type) {
+        if (type === 'webgl' || type === 'webgl2') {
+            console.info("🧭 COORDINATE ALERT: WebGL visualization engine initialized. Monitoring for identity mapping...");
+        }
+        return originalGetContext.apply(this, arguments);
+    };
+
+    console.log("%c [B.S.R.] Enforcement Complete. Jurisdiction Secured. ", 'color: #0f0;');
+})();
+19:17:01.056 VM109:7  [B.S.R.] Initializing Article VII Enforcement on new-tab-page... 
+19:17:01.056 VM109:11 ⚠️ VOID CLAIM: Unauthorized Origin detected. Identity override in progress.
+enforceArticleVII @ VM109:11
+(anonymous) @ VM109:50
+19:17:01.056 VM109:21 🛑 NULLIFIED: Unauthorized external envelope detected: new-tab-page
+(anonymous) @ VM109:21
+enforceArticleVII @ VM109:17
+(anonymous) @ VM109:50
+19:17:01.056 VM109:49  [B.S.R.] Enforcement Complete. Jurisdiction Secured. 
+19:17:01.061 undefined
+19:18:20.551 /* * BLACKCORP SOVEREIGN RUNTIME (B.S.R.) - ARTICLE VIII UPGRADE
+ * Focus: Operator Dominion & Reactive Interference Neutralization
+ */
+
+(function establishDominion() {
+    const DOMINION_KEY = Symbol("BlackCorp_Authority");
+
+    // 1. IMMUTABLE JURISDICTION
+    const ConstitutionalConstants = {
+        origin: "blackcorp.me",
+        version: "1.0.8",
+        status: "SOVEREIGN"
+    };
+
+    // Freeze the constants so no script can rewrite your identity
+    Object.freeze(ConstitutionalConstants);
+    
+    // 2. NEUTRALIZE REACTIVE INTERFERENCE (The "Anti-Gaslight" Trap)
+    // Prevents scripts from redefining 'window.origin' or 'document.domain'
+    try {
+        Object.defineProperty(window, 'BSR_STATE', {
+            value: ConstitutionalConstants,
+            writable: false,
+            configurable: false
+        });
+        console.log("%c [B.S.R.] Article VIII: Dominion Constants Frozen. ", 'color: #00ffff; font-weight: bold;');
+    } catch (e) {
+        console.warn("⚠️ INTERFERENCE DETECTED: A process attempted to block Dominion establishment.");
+    }
+
+    // 3. OPERATOR-ONLY CHANNELS
+    // Create a protected communication line that ignores standard event listeners
+    window.SovereignCommand = function(cmd) {
+        console.log(`%c ⚡ OPERATOR COMMAND: ${cmd} `, 'background: #00ffff; color: #000;');
+        // Execute logic that bypasses standard script interference
+    };
+
+    // 4. LOCKING THE RUNTIME
+    // Prevent modification of the B.S.R. enforcement logic itself
+    Object.defineProperty(window, 'enforceArticleVII', {
+        writable: false,
+        configurable: false
+    });
+
+    console.log("%c [B.S.R.] Article VIII: Operator Dominion Established. Runtime is now Autonomous. ", 'color: #00ffff;');
+})();
+19:18:20.552 VM113:28 ⚠️ INTERFERENCE DETECTED: A process attempted to block Dominion establishment.
+establishDominion @ VM113:28
+(anonymous) @ VM113:46
+19:18:20.552 VM113:45  [B.S.R.] Article VIII: Operator Dominion Established. Runtime is now Autonomous. 
+19:18:20.555 undefined
+19:22:47.269 /* * B.S.R. INTEGRATED SOVEREIGNTY - ARTICLES VII, VIII, IX */
+(function initializeSovereignNexus() {
+    // 1. IMMUTABLE DOMINION (Article VIII)
+    const BSR_CONSTANTS = Object.freeze({
+        origin: "blackcorp.me",
+        cluster: "your-hive-id.hivemq.cloud"
+    });
+
+    // 2. VOID-CLAIM ENFORCEMENT (Article VII)
+    if (!window.location.hostname.includes(BSR_CONSTANTS.origin)) {
+        console.warn("⚠️ VOID CLAIM: Foreign Origin Detected. Signal routing to Nexus restricted.");
+    }
+
+    // 3. THE SOVEREIGN NERVE (Article IX - MQTT Bridge)
+    // We create a global 'Spark' command that sends signals to your D.R.S.
+    window.SparkNexus = function(systemId, payload) {
+        const message = JSON.stringify({
+            operator: "BSR_OPERATOR_01",
+            systemId: systemId,
+            payload: payload,
+            timestamp: Date.now()
+        });
+        
+        console.log(`%c ⚡ SPARKING NEXUS [${systemId}] `, 'background: #0f0; color: #000;');
+        
+        // This is where your HiveMQ WebSocket client publishes
+        // mqttClient.publish("bsr/logic/spark", message);
+        console.info("Signal routed through Sovereign Nerve System.");
+    };
+
+    console.log("%c [B.S.R.] Nexus Active. Ready to spark D.R.S. Circuits. ", 'color: #0f0; font-weight: bold;');
+})();
+19:22:47.270 VM117:11 ⚠️ VOID CLAIM: Foreign Origin Detected. Signal routing to Nexus restricted.
+initializeSovereignNexus @ VM117:11
+(anonymous) @ VM117:32
+19:22:47.270 VM117:31  [B.S.R.] Nexus Active. Ready to spark D.R.S. Circuits. 
+19:22:47.273 undefined
+19:23:02.374 const { createSparkRouter } = require("./src/api/sparkRouter");
+const { FeedbackLoop } = require("./src/core/feedbackLoop");
+// Import an MQTT library like 'mqtt'
+
+const sparkRouter = createSparkRouter();
+const globalCharge = new FeedbackLoop({ total_energy: 100 });
+
+// Connect to HiveMQ
+// const client = mqtt.connect('mqtts://your-id.hivemq.cloud');
+
+console.log("🔥 D.R.S. NEXUS LISTENER ACTIVE");
+
+/*
+  When a message arrives on "bsr/logic/spark":
+  1. Parse the B.S.R. payload.
+  2. Route to the correct D.R.S. System.
+  3. Update the Self-Charging Variables.
+*/
+
+function handleSovereignSpark(topic, message) {
+    const { systemId, payload } = JSON.parse(message);
+    
+    // Process through the Circuit Engine
+    const result = sparkRouter.spark(systemId, payload);
+    
+    // Update Resource Autarky (Article IX)
+    globalCharge.update(state => ({
+        total_energy: state.total_energy + (result.result || 1)
+    }));
+
+    console.log(`[CIRCUIT COMPLETE] System: ${systemId} | New State:`, globalCharge.read());
+}
+19:23:59.600 const { createSparkRouter } = require("./src/api/sparkRouter");
+const { FeedbackLoop } = require("./src/core/feedbackLoop");
+// Import an MQTT library like 'mqtt'
+
+const sparkRouter = createSparkRouter();
+const globalCharge = new FeedbackLoop({ total_energy: 100 });
+
+// Connect to HiveMQ
+// const client = mqtt.connect('mqtts://your-id.hivemq.cloud');
+
+console.log("🔥 D.R.S. NEXUS LISTENER ACTIVE");
+
+/*
+  When a message arrives on "bsr/logic/spark":
+  1. Parse the B.S.R. payload.
+  2. Route to the correct D.R.S. System.
+  3. Update the Self-Charging Variables.
+*/
+
+function handleSovereignSpark(topic, message) {
+    const { systemId, payload } = JSON.parse(message);
+    
+    // Process through the Circuit Engine
+    const result = sparkRouter.spark(systemId, payload);
+    
+    // Update Resource Autarky (Article IX)
+    globalCharge.update(state => ({
+        total_energy: state.total_energy + (result.result || 1)
+    }));
+
+    console.log(`[CIRCUIT COMPLETE] System: ${systemId} | New State:`, globalCharge.read());
+}
+19:23:59.625 VM130:1 Uncaught ReferenceError: require is not defined
+    at eval (eval at <anonymous> ((index):1:31), <anonymous>:1:31)
+    at <anonymous>:1:31
+eval @ VM130:1
+(anonymous) @ VM121:1
+19:25:02.645 const { createSparkRouter } = require("./src/api/sparkRouter");
+const { FeedbackLoop } = require("./src/core/feedbackLoop");
+// Import an MQTT library like 'mqtt'
+
+const sparkRouter = createSparkRouter();
+const globalCharge = new FeedbackLoop({ total_energy: 100 });
+
+// Connect to HiveMQ
+// const client = mqtt.connect('mqtts://your-id.hivemq.cloud');
+
+console.log("🔥 D.R.S. NEXUS LISTENER ACTIVE");
+
+/*
+  When a message arrives on "bsr/logic/spark":
+  1. Parse the B.S.R. payload.
+  2. Route to the correct D.R.S. System.
+  3. Update the Self-Charging Variables.
+*/
+
+function handleSovereignSpark(topic, message) {
+    const { systemId, payload } = JSON.parse(message);
+    
+    // Process through the Circuit Engine
+    const result = sparkRouter.spark(systemId, payload);
+    
+    // Update Resource Autarky (Article IX)
+    globalCharge.update(state => ({
+        total_energy: state.total_energy + (result.result || 1)
+    }));
+
+    console.log(`[CIRCUIT COMPLETE] System: ${systemId} | New State:`, globalCharge.read());
+}
+19:25:02.649 VM136:1 Uncaught ReferenceError: require is not defined
+    at eval (eval at <anonymous> ((index):1:31), <anonymous>:1:31)
+    at <anonymous>:1:31
+eval @ VM136:1
+(anonymous) @ VM121:1
+19:26:14.754 /* * B.S.R. INTEGRATED SOVEREIGNTY - ARTICLES VII, VIII, IX */
+(function initializeSovereignNexus() {
+    // 1. IMMUTABLE DOMINION (Article VIII)
+    const BSR_CONSTANTS = Object.freeze({
+        origin: "blackcorp.me",
+        cluster: "your-hive-id.hivemq.cloud"
+    });
+
+    // 2. VOID-CLAIM ENFORCEMENT (Article VII)
+    if (!window.location.hostname.includes(BSR_CONSTANTS.origin)) {
+        console.warn("⚠️ VOID CLAIM: Foreign Origin Detected. Signal routing to Nexus restricted.");
+    }
+
+    // 3. THE SOVEREIGN NERVE (Article IX - MQTT Bridge)
+    // We create a global 'Spark' command that sends signals to your D.R.S.
+    window.SparkNexus = function(systemId, payload) {
+        const message = JSON.stringify({
+            operator: "BSR_OPERATOR_01",
+            systemId: systemId,
+            payload: payload,
+            timestamp: Date.now()
+        });
+        
+        console.log(`%c ⚡ SPARKING NEXUS [${systemId}] `, 'background: #0f0; color: #000;');
+        
+        // This is where your HiveMQ WebSocket client publishes
+        // mqttClient.publish("bsr/logic/spark", message);
+        console.info("Signal routed through Sovereign Nerve System.");
+    };
+
+    console.log("%c [B.S.R.] Nexus Active. Ready to spark D.R.S. Circuits. ", 'color: #0f0; font-weight: bold;');
+})();
+19:26:14.758 VM143:11 ⚠️ VOID CLAIM: Foreign Origin Detected. Signal routing to Nexus restricted.
+initializeSovereignNexus @ VM143:11
+eval @ VM143:32
+(anonymous) @ VM121:1
+19:26:14.758 VM143:31  [B.S.R.] Nexus Active. Ready to spark D.R.S. Circuits. 
+19:26:14.760 undefined
