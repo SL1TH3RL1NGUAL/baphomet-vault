@@ -1,0 +1,58 @@
+body {
+  margin: 0;
+  background: #050608;
+  color: #e5e5e5;
+  font-family: "SF Mono", Consolas, monospace;
+}
+
+header {
+  padding: 1rem;
+  border-bottom: 1px solid #222;
+  display: flex;
+  justify-content: space-between;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+}
+
+main {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+section {
+  background: #0b0c10;
+  border: 1px solid #222;
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+textarea, select, input, button {
+  width: 100%;
+  margin-top: 0.3rem;
+  background: #050608;
+  border: 1px solid #333;
+  color: #e5e5e5;
+  padding: 0.4rem;
+}
+
+button {
+  cursor: pointer;
+  background: #151a2b;
+  border-color: #303a6a;
+}
+
+button:hover {
+  background: #1d2336;
+}
+
+#eventLog {
+  max-height: 250px;
+  overflow-y: auto;
+  font-size: 0.8rem;
+}
