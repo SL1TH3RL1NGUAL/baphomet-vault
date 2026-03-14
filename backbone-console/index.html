@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>BlackCorp Backbone Console</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+<header>
+  <h1>BLACKCORP BACKBONE</h1>
+  <span id="backboneState">STATE: INIT</span>
+</header>
+
+<main>
+  <section id="nodesSection">
+    <h2>Nodes</h2>
+    <div id="nodeList"></div>
+  </section>
+
+  <section id="controlSection">
+    <h2>Node Control</h2>
+    <div id="nodeDetail">No node selected</div>
+
+    <label>Command Type</label>
+    <select id="cmdType"></select>
+
+    <label>Payload (JSON)</label>
+    <textarea id="cmdPayload">{}</textarea>
+
+    <button id="sendCmdBtn">Send Command</button>
+  </section>
+
+  <section id="energiesSection">
+    <h2>Backbone Energies</h2>
+    <div id="energyInputs"></div>
+    <button id="applyBackboneBtn">Apply Backbone State</button>
+  </section>
+
+  <section id="eventsSection">
+    <h2>Events & Adversary Currents</h2>
+    <button id="injectAdversaryBtn">Inject Adversary Current</button>
+    <div id="eventLog"></div>
+  </section>
+</main>
+
+<script src="js/backbone.js"></script>
+<script src="js/nodes.js"></script>
+<script src="js/events.js"></script>
+</body>
+</html>
