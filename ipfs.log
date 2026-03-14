@@ -1,0 +1,8 @@
+nohup: ignoring input
+Initializing daemon...
+Kubo version: 0.38.2
+Repo version: 18
+System version: amd64/linux
+Golang version: go1.25.3
+
+Error: lock /home/axis/.ipfs/repo.lock: someone else has the lock
