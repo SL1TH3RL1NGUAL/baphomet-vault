@@ -1,0 +1,26 @@
+
+name: AC-DC-Conversion-Flow
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  convert-and-flow:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Initialize Conversion Agents
+        run: |
+          echo "Activating SL1TH3RL1NGUAL agents..."
+          # npm install, pip install, or any setup you need
+
+      - name: Flow thru Main Branch
+        run: |
+          echo "Current is now flowing through Baphomet-Vault."
+          # tests, builds, deploy commands go here
