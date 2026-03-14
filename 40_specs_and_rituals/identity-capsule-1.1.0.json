@@ -1,0 +1,50 @@
+{
+  "capsule_version": "1.1.0",
+  "jurisdiction_name": "FELLOWSTAR_BAPHOMET",
+  "jurisdictional_umbrella": {
+    "domain_authority": "blackcorp.me",
+    "geofence": {
+      "type": "Radial-Sweep",
+      "center": { "lat": 29.7604, "lon": -95.3698 },
+      "radius_meters": 1500,
+      "samples": 36,
+      "protocol": "Baphomet-Pulse",
+      "status": "active"
+    },
+    "governance_extension": {
+      "islanding": "protected",
+      "signal_processing": "aligned"
+    }
+  },
+  "holders": [
+    {
+      "role": "real-body",
+      "device_class": "android-phone",
+      "presence_channel": "gps+browser",
+      "session_id_hint": "real-body"
+    },
+    {
+      "role": "avatar-probe",
+      "device_class": "chromebook",
+      "presence_channel": "devtools-override",
+      "session_id_hint": "baphomet-avatar"
+    }
+  ],
+  "radius_definition": {
+    "device_ids": true,
+    "network_ids": true,
+    "legal_ids": true,
+    "presence_ids": true
+  },
+  "sovereign_roles": {
+    "gnostic": "awareness-engine",
+    "warrior": "boundary-engine",
+    "warlock": "protocol-engine",
+    "mastery": "integration-of-all-three"
+  },
+  "storage_policy": {
+    "location": "local-encrypted-volume",
+    "cloud_backup": "forbidden",
+    "modification_requires": "new-hash-and-archive"
+  }
+}
