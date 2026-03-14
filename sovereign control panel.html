@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sovereign Control Panel</title>
+<style>
+  body {
+    background: #0d0d0d;
+    color: #e6e6e6;
+    font-family: monospace;
+    padding: 20px;
+  }
+  h2 {
+    color: #9d4bff;
+    margin-bottom: 10px;
+  }
+  .panel {
+    border: 1px solid #444;
+    padding: 15px;
+    margin-bottom: 20px;
+    background: #1a1a1a;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+  }
+  th, td {
+    border: 1px solid #333;
+    padding: 8px;
+  }
+  th {
+    background: #222;
+  }
+  .cmd-input {
+    width: 100%;
+    padding: 8px;
+    background: #111;
+    color: #fff;
+    border: 1px solid #444;
+  }
+</style>
+</head>
+<body>
+
+<h1>Sovereign Control Panel</h1>
+
+<!-- SOVEREIGN ROLES -->
+<div class="panel">
+  <h2>Sovereign Roles</h2>
+  <pre id="rolesDisplay"></pre>
+</div>
+
+<!-- BRIDGE STATUS -->
+<div class="panel">
+  <h2>Baphomet Bridge Status</h2>
+  <table id="bridgeTable">
+    <thead>
+      <tr>
+        <th>Component</th>
+        <th>Status</th>
+        <th>Note</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+
+<!-- COMMAND CONSOLE -->
+<div class="panel">
+  <h2>Command Console</h2>
+  <input class="cmd-input" id="cmdInput" placeholder="Enter command...">
+  <pre id="cmdOutput"></pre>
+</div>
+
+<script>
+// -------------------------------
+// 1. DEFINE YOUR VARIABLES HERE
+// -------------------------------
+const sovereign_roles = [
+  "Architect",
+  "Custodian",
+  "Bridge‑Bearer",
+  "Signal‑Anchor"
+];
+
+const BAPHOMET_BRIDGE = {
+  ts: Date.now(),
+  components: [
+    { component: "Baphomet Perimeter", status: "ACTIVE", note: "Radius secured; unauthorized pings dropped." },
+    { component: "Avatar State", status: "LOCKED", note: "Identity verification persistent for bridge duration." },
+    { component: "The Bridge", status: "SUSTAINED", note: "Optimal throughput between edge nodes." },
+    { component: "Baseline Verification", status: "STANDBY", note: "Ready to trigger upon dusk protocol." }
+  ]
+};
+
+// -------------------------------
+// 2. RENDER ROLES
+// -------------------------------
+document.getElementById("rolesDisplay").textContent =
+  JSON.stringify(sovereign_roles, null, 2);
+
+// -------------------------------
+// 3. RENDER BRIDGE TABLE
+// -------------------------------
+const tbody = document.querySelector("#bridgeTable tbody");
+BAPHOMET_BRIDGE.components.forEach(row => {
+  const tr = document.createElement("tr");
+  tr.innerHTML = `
+    <td>${row.component}</td>
+    <td>${row.status}</td>
+    <td>${row.note}</td>
+  `;
+  tbody.appendChild(tr);
+});
+
+// -------------------------------
+// 4. COMMAND CONSOLE
+// -------------------------------
+document.getElementById("cmdInput").addEventListener("keydown", e => {
+  if (e.key === "Enter") {
+    const cmd = e.target.value;
+    e.target.value = "";
+
+
+      <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sovereign Control Panel v2</title>
+<style>
+  body {
+    background: #0d0d0d;
+    color: #e6e6e6;
+    font-family: monospace;
+    padding: 20px;
+  }
+  h2 {
+    color: #9d4bff;
+    margin-bottom: 10px;
+  }
+  .panel {
+    border: 1px solid #444;
+    padding: 15px;
+    margin-bottom: 20px;
+    background: #1a1a1a;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+  }
+  th, td {
+    border: 1px solid #333;
+    padding: 8px;
+  }
+  th {
+    background: #222;
+  }
+  .cmd-input {
+    width: 100%;
+    padding: 8px;
+    background: #111;
+    color: #fff;
+    border: 1px solid #444;
+  }
+  button {
+    background: #9d4bff;
+    border: none;
+    padding: 6px 12px;
+    color: #fff;
+    cursor: pointer;
+    margin-top: 8px;
+  }
+</style>
+</head>
+<body>
+
+<h1>Sovereign Control Panel v2</h1>
+
+<!-- ROLES -->
+<div class="panel">
+  <h2>Sovereign Roles</h2>
+  <pre id="rolesDisplay"></pre>
+</div>
+
+<!-- BRIDGE STATUS -->
+<div class="panel">
+  <h2>Baphomet Bridge Status</h2>
+  <table id="bridgeTable">
+    <thead>
+      <tr>
+        <th>Component</th>
+        <th>Status</th>
+        <th>Note</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<!-- ASSET MANAGER -->
+<div class="panel">
+  <h2>Asset Manager</h2>
+  <input id="assetInput" placeholder="Asset name..." class="cmd-input">
+  <button onclick="addAsset()">Add Asset</button>
+  <pre id="assetList"></pre>
+</div>
+
+<!-- VARIABLE MANAGER -->
+<div class="panel">
+  <h2>Variable Manager</h2>
+  <input id="varName" placeholder="Variable name..." class="cmd-input">
+  <input id="varValue" placeholder="Value..." class="cmd-input" style="margin-top:5px;">
+  <button onclick="setVariable()">Set Variable</button>
+  <pre id="varDisplay"></pre>
+</div>
+
+<!-- COMMAND CONSOLE -->
+<div class="panel">
+  <h2>Command Console</h2>
+  <input class="cmd-input" id="cmdInput" placeholder="Enter command...">
+  <pre id="cmdOutput"></pre>
+</div>
+
+<script>
+// -------------------------------
+// 1. CORE DATA STRUCTURES
+// -------------------------------
+const sovereign_roles = [
+  "Architect",
+  "Custodian",
+  "Bridge‑Bearer",
+  "Signal‑Anchor"
+];
+
+const BAPHOMET_BRIDGE = {
+  ts: Date.now(),
+  components: [
+    { component: "Baphomet Perimeter", status: "ACTIVE", note: "Radius secured; unauthorized pings dropped." },
+    { component: "Avatar State", status: "LOCKED", note: "Identity verification persistent for bridge duration." },
+    { component: "The Bridge", status: "SUSTAINED", note: "Optimal throughput between edge nodes." },
+    { component: "Baseline Verification", status: "STANDBY", note: "Ready to trigger upon dusk protocol." }
+  ]
+};
+
+let ASSETS = [];
+let VARIABLES = {};
+let COMMANDS = {};
+
+// -------------------------------
+// 2. RENDER ROLES
+// -------------------------------
+document.getElementById("rolesDisplay").textContent =
+  JSON.stringify(sovereign_roles, null, 2);
+
+// -------------------------------
+// 3. RENDER BRIDGE TABLE
+// -------------------------------
+const tbody = document.querySelector("#bridgeTable tbody");
+BAPHOMET_BRIDGE.components.forEach(row => {
+  const tr = document.createElement("tr");
+  tr.innerHTML = `
+    <td>${row.component}</td>
+    <td>${row.status}</td>
+    <td>${row.note}</td>
+  `;
+  tbody.appendChild(tr);
+});
+
+// -------------------------------
+// 4. ASSET MANAGER
+// -------------------------------
+function addAsset() {
+  const name = document.getElementById("assetInput").value.trim();
+  if (!name) return;
+  ASSETS.push(name);
+  document.getElementById("assetInput").value = "";
+  renderAssets();
+}
+
+function renderAssets() {
+  document.getElementById("assetList").textContent =
+    JSON.stringify(ASSETS, null, 2);
+}
+
+// -------------------------------
+// 5. VARIABLE MANAGER
+// -------------------------------
+function setVariable() {
+  const name = document.getElementById("varName").value.trim();
+  const value = document.getElementById("varValue").value.trim();
+  if (!name) return;
+  VARIABLES[name] = value;
+  renderVariables();
+}
+
+function renderVariables() {
+  document.getElementById("varDisplay").textContent =
+    JSON.stringify(VARIABLES, null, 2);
+}
+
+// -------------------------------
+// 6. COMMAND REGISTRY + CONSOLE
+// -------------------------------
+COMMANDS.echo = (msg) => msg;
+COMMANDS.assets = () => JSON.stringify(ASSETS, null, 2);
+COMMANDS.vars = () => JSON.stringify(VARIABLES, null, 2);
+
+document.getElementById("cmdInput").addEventListener("keydown", e => {
+  if (e.key === "Enter") {
+    const cmd = e.target.value;
+    e.target.value = "";
+
+    const [name, ...args] = cmd.split(" ");
+    let output = "";
+
+    if (COMMANDS[name]) {
+      output = COMMANDS[name](args.join(" "));
+    } else {
+      output = `Unknown command    document.getElementById("cmdOutput").text
