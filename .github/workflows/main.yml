@@ -22,3 +22,8 @@ jobs:
         run: |
           echo "Current is now flowing through Baphomet-Vault."
           # Insert your deployment or testing commands here
+          
+- name: Deploy to Server
+        run: |
+          echo "Connecting to ${{ secrets.SERVER_HOST }}..."
+          # The agent uses the secret without ever printing it to the logs          
