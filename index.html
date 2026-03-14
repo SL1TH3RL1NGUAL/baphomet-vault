@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>BlackCorp Backbone Console</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * { box-sizing: border-box; font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Mono", monospace; }
+    body { margin: 0; background:#050608; color:#e5e5e5; }
+    header { padding: 1rem 1.5rem; border-bottom: 1px solid #222; display:flex; justify-content:space-between; align-items:center; }
+    header h1 { margin:0; font-size:1.1rem; letter-spacing:0.08em; text-transform:uppercase; }
+    header span { font-size:0.8rem; color:#8f8f8f; }
+    main { display:flex; flex-wrap:wrap; padding:1rem; gap:1rem; }
+    section { border:1px solid #222; padding:0.75rem; border-radius:4px; background:#0b0c10; flex:1 1 280px; min-width:260px; }
+    h2 { margin:0 0 0.5rem 0; font-size:0.9rem; text-transform:uppercase; letter-spacing:0.08em; color:#c5c5ff; }
+    .pill { display:inline-block; padding:0.1rem 0.4rem; border-radius:999px; font-size:0.7rem; margin-right:0.25rem; }
+    .pill-ac { background:#1b2838; color:#7fd0ff; }
+    .pill-dc { background:#182818; color:#9dff9d; }
+    .pill-rf { background:#281828; color:#ff9df2; }
+    .pill-opt { background:#281f18; color:#ffc89d; }
+    .pill-kin { background:#182428; color:#9df5ff; }
+    .pill-gas { background:#282218; color:#ffe39d; }
+    .pill-adv { background:#281818; color:#ff7f7f; }
+    .node-list { max-height:220px; overflow:auto; font-size:0.8rem; }
+    .node { padding:0.35rem 0.25rem; border-bottom:1px solid #151515; cursor:pointer; }
+    .node:hover { background:#11141b; }
+    .node-id { font-weight:600; }
+    .node-status { font-size:0.7rem; color:#9f9f9f; }
+    label { font-size:0.75rem; display:block; margin-top:0.4rem; margin-bottom:0.1rem; }
+    select, input, button, textarea {
+      width:100%; padding:0.35rem 0.4rem; border-radius:3px; border:1px solid #333;
+      background:#050608; color:#e5e5e5; font-size:0.8rem;
+    }
+    button { cursor:pointer; background:#151a2b; border-color:#303a6a; }
+    button:hover { background:#1d2336; }
+    textarea { resize:vertical; min-height:80px; }
+    .log { max-height:260px; overflow:auto; font-size:0.75rem; background:#050608; padding:0.4rem; border-radius:3px; border:1px solid #222; }
+    .log-entry { margin-bottom:0.25rem; }
+    .log-time { color:#777; margin-right:0.3rem; }
+    .log-tag { font-size:0.7rem; margin-right:0.3rem; }
+    .tag-info { color:#9dff9d; }
+    .tag-adv { color:#ff7f7f; }
+    .tag-cmd { color:#9dc9ff; }
+    .grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; }
+    .badge { font-size:0.7rem; color:#aaa; }
+  </style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>BLACKCORP BACKBONE</h1>
+    <span>Continuous generative energy · AC/DC · RF · Optical · Kinetic · Gas · Adversary</span>
+  </div>
+  <div class="badge" id="backboneState">STATE: INIT</div>
+</header>
+
+<main>
+  <!-- Nodes -->
+  <section>
+    <h2>Nodes</h2>
+    <div class="node-list" id="nodeList"></div>
+  </section>
+
+  <!-- Node detail / command -->
+  <section>
+    <h2>Node control</h2>
+    <div id="nodeDetail">
+      <div class="badge">No node selected</div>
+    </div>
+    <div style="margin-top:0.5rem;">
+      <label for="cmdType">Command type</label>
+      <select id="cmdType">
+        <option value="POWER_SET">POWER_SET (AC/DC rails)</option>
+        <option value="ROUTE_SET">ROUTE_SET (signal routing)</option>
+        <option value="MODE_SET">MODE_SET (RF/OPT/UV/KIN/GAS)</option>
+        <option value="OBSERVE">OBSERVE (telemetry pull)</option>
+        <option value="QUARANTINE">QUARANTINE (adversary surface)</option>
+      </select>
+
+      <label for="cmdPayload">Payload (JSON)</label>
+      <textarea id="cmdPayload" spellcheck="false">
+{"rail":"DC_12V","enable":true}</textarea>
+
+      <button id="sendCmdBtn">Send command to selected node</button>
+    </div>
+  </section>
+
+  <!-- Energies / backbone -->
+  <section>
+    <h2>Backbone energies</h2>
+    <div class="grid-2">
+      <div>
+        <label>AC grid (VAC)</label>
+        <input id="acGrid" type="number" value="230" />
+      </div>
+      <div>
+        <label>DC backbone (V)</label>
+        <input id="dcBackbone" type="number" value="24" />
+      </div>
+      <div>
+        <label>RF band (MHz)</label>
+        <input id="rfBand" type="number" value="915" />
+      </div>
+      <div>
+        <label>Optical / UV channel</label>
+        <input id="optChannel" type="text" value="UV-A" />
+      </div>
+      <div>
+        <label>Kinetic mode</label>
+        <input id="kinMode" type="text" value="IDLE" />
+      </div>
+      <div>
+        <label>Gas field (ppm CO₂)</label>
+        <input id="gasField" type="number" value="420" />
+      </div>
+    </div>
+    <button style="margin-top:0.5rem;" id="applyBackboneBtn">Apply backbone state</button>
+  </section>
+
+  <!-- Adversary / log -->
+  <section>
+    <h2>Events & adversary currents</h2>
+    <button id="injectAdversaryBtn">Inject synthetic adversary current</button>
+    <div class="log" id="eventLog"></div>
+  </section>
+</main>
+
+<script>
+  // --- Data model -----------------------------------------------------------
+
+  const backbone = {
+    acGridVac: 230,
+    dcBackboneV: 24,
+    rfBandMHz: 915,
+    opticalChannel: "UV-A",
+    kineticMode: "IDLE",
+    gasFieldPpm: 420,
+    nodes: [],
+    selectedNodeId: null
+  };
+
+  // Node template
+  function createNode(id, kind, modalities) {
+    return {
+      id,
+      kind, // "PCB", "UAV", "SAT", "GREENHOUSE", etc.
+      modalities, // ["AC","DC","RF","OPT","UV","KIN","GAS","ADV"]
+      power: {
+        acOnline: false,
+        dcOnline: true,
+        rails: {
+          DC_24V: true,
+          DC_12V: true,
+          DC_5V: true,
+          DC_3V3: true
+        }
+      },
+      routing: {
+        rfEnabled: modalities.includes("RF"),
+        opticalEnabled: modalities.includes("OPT") || modalities.includes("UV"),
+        kineticEnabled: modalities.includes("KIN"),
+        gasEnabled: modalities.includes("GAS")
+      },
+      observability: {
+        adversarySurface: modalities.includes("ADV"),
+        quarantine: false,
+        lastSeen: new Date().toISOString()
+      },
+      meta: {
+        spaceTime: "UNBOUND",
+        repoRef: "main",
+        tags: []
+      }
+    };
+  }
+
+  // Seed nodes
+  backbone.nodes.push(
+    createNode("NODE-PCB-01", "PCB", ["AC","DC","RF","OPT","KIN","ADV"]),
+    createNode("NODE-UAV-01", "UAV", ["DC","RF","OPT","UV","KIN","GAS","ADV"]),
+    createNode("NODE-SAT-01", "SAT", ["DC","RF","OPT","ADV"]),
+    createNode("NODE-GREEN-01", "GREENHOUSE", ["AC","DC","GAS","KIN"])
+  );
+
+  // --- Logging --------------------------------------------------------------
+
+  const logEl = document.getElementById("eventLog");
+
+  function logEvent(tag, message, isAdversary = false) {
+    const entry = document.createElement("div");
+    entry.className = "log-entry";
+    const time = new Date().toISOString();
+    const timeSpan = document.createElement("span");
+    timeSpan.className = "log-time";
+    timeSpan.textContent = "[" + time + "]";
+    const tagSpan = document.createElement("span");
+    tagSpan.className = "log-tag " + (tag === "ADV" ? "tag-adv" : tag === "CMD" ? "tag-cmd" : "tag-info");
+    tagSpan.textContent = tag;
+    const msgSpan = document.createElement("span");
+    msgSpan.textContent = message;
+    entry.appendChild(timeSpan);
+    entry.appendChild(tagSpan);
+    entry.appendChild(msgSpan);
+    logEl.prepend(entry);
+  }
+
+  // --- UI: Nodes ------------------------------------------------------------
+
+  const nodeListEl = document.getElementById("nodeList");
+  const nodeDetailEl = document.getElementById("nodeDetail");
+  const backboneStateEl = document.getElementById("backboneState");
+
+  function renderNodes() {
+    nodeListEl.innerHTML = "";
+    backbone.nodes.forEach(node => {
+      const div = document.createElement("div");
+      div.className = "node";
+      div.onclick = () => selectNode(node.id);
+
+      const idSpan = document.createElement("div");
+      idSpan.className = "node-id";
+      idSpan.textContent = node.id + " · " + node.kind;
+
+      const statusSpan = document.createElement("div");
+      statusSpan.className = "node-status";
+      statusSpan.textContent =
+        "AC:" + (node.power.acOnline ? "ON" : "OFF") +
+        " DC:" + (node.power.dcOnline ? "ON" : "OFF") +
+        " RF:" + (node.routing.rfEnabled ? "ON" : "OFF") +
+        " OPT:" + (node.routing.opticalEnabled ? "ON" : "OFF") +
+        " KIN:" + (node.routing.kineticEnabled ? "ON" : "OFF") +
+        " GAS:" + (node.routing.gasEnabled ? "ON" : "OFF");
+
+      const pills = document.createElement("div");
+      node.modalities.forEach(m => {
+        const pill = document.createElement("span");
+        pill.className = "pill " + ({
+          AC: "pill-ac",
+          DC: "pill-dc",
+          RF: "pill-rf",
+          OPT: "pill-opt",
+          UV: "pill-opt",
+          KIN: "pill-kin",
+          GAS: "pill-gas",
+          ADV: "pill-adv"
+        }[m] || "");
+        pill.textContent = m;
+        pills.appendChild(pill);
+      });
+
+      div.appendChild(idSpan);
+      div.appendChild(statusSpan);
+      div.appendChild(pills);
+      nodeListEl.appendChild(div);
+    });
+  }
+
+  function selectNode(id) {
+    backbone.selectedNodeId = id;
+    const node = backbone.nodes.find(n => n.id === id);
+    if (!node) return;
+    nodeDetailEl.innerHTML = "";
+    const title = document.createElement("div");
+    title.innerHTML = "<strong>" + node.id + "</strong> · " + node.kind;
+    const meta = document.createElement("div");
+    meta.className = "badge";
+    meta.textContent = "Repo: " + node.meta.repoRef + " · SpaceTime: " + node.meta.spaceTime;
+    const adv = document.createElement("div");
+    adv.className = "badge";
+    adv.textContent =
+      "Adversary surface: " + (node.observability.adversarySurface ? "YES" : "NO") +
+      " · Quarantine: " + (node.observability.quarantine ? "ON" : "OFF");
+    nodeDetailEl.appendChild(title);
+    nodeDetailEl.appendChild(meta);
+    nodeDetailEl.appendChild(adv);
+  }
+
+  // --- Commands -------------------------------------------------------------
+
+  function commandNode(nodeId, type, payload) {
+    const node = backbone.nodes.find(n => n.id === nodeId);
+    if (!node) {
+      logEvent("ERR", "Node not found: " + nodeId);
+      return;
+    }
+
+    switch (type) {
+      case "POWER_SET":
+        if (payload.rail && typeof payload.enable === "boolean") {
+          node.power.rails[payload.rail] = payload.enable;
+          if (payload.rail === "AC") node.power.acOnline = payload.enable;
+          if (payload.rail === "DC") node.power.dcOnline = payload.enable;
+          logEvent("CMD", nodeId + " POWER_SET " + payload.rail + "=" + payload.enable);
+        }
+        break;
+
+      case "ROUTE_SET":
+        if (typeof payload.rfEnabled === "boolean") node.routing.rfEnabled = payload.rfEnabled;
+        if (typeof payload.opticalEnabled === "boolean") node.routing.opticalEnabled = payload.opticalEnabled;
+        if (typeof payload.kineticEnabled === "boolean") node.routing.kineticEnabled = payload.kineticEnabled;
+        if (typeof payload.gasEnabled === "boolean") node.routing.gasEnabled = payload.gasEnabled;
+        logEvent("CMD", nodeId + " ROUTE_SET " + JSON.stringify(payload));
+        break;
+
+      case "MODE_SET":
+        if (payload.kineticMode) backbone.kineticMode = payload.kineticMode;
+        if (payload.opticalChannel) backbone.opticalChannel = payload.opticalChannel;
+        if (payload.rfBandMHz) backbone.rfBandMHz = payload.rfBandMHz;
+        logEvent("CMD", nodeId + " MODE_SET " + JSON.stringify(payload));
+        break;
+
+      case "OBSERVE":
+        node.observability.lastSeen = new Date().toISOString();
+        logEvent("INFO", nodeId + " OBSERVE " + node.observability.lastSeen);
+        break;
+
+      case "QUARANTINE":
+        node.observability.quarantine = !!payload.enable;
+        logEvent("CMD", nodeId + " QUARANTINE=" + node.observability.quarantine);
+        break;
+
+      default:
+        logEvent("ERR", "Unknown command type: " + type);
+    }
+
+    renderNodes();
+    if (backbone.selectedNodeId === nodeId) selectNode(nodeId);
+  }
+
+  // --- Backbone state -------------------------------------------------------
+
+  function applyBackboneState() {
+    backbone.acGridVac = Number(document.getElementById("acGrid").value || 0);
+    backbone.dcBackboneV = Number(document.getElementById("dcBackbone").value || 0);
+    backbone.rfBandMHz = Number(document.getElementById("rfBand").value || 0);
+    backbone.opticalChannel = document.getElementById("optChannel").value || "";
+    backbone.kineticMode = document.getElementById("kinMode").value || "";
+    backbone.gasFieldPpm = Number(document.getElementById("gasField").value || 0);
+
+    backboneStateEl.textContent =
+      "STATE: AC " + backbone.acGridVac + " VAC · DC " + backbone.dcBackboneV +
+      " V · RF " + backbone.rfBandMHz + " MHz · OPT " + backbone.opticalChannel +
+      " · KIN " + backbone.kineticMode + " · GAS " + backbone.gasFieldPpm + " ppm";
+
+    logEvent("INFO", "Backbone state updated");
+  }
+
+  // --- Adversary currents ---------------------------------------------------
+
+  function injectAdversaryCurrent() {
+    const surfaces = backbone.nodes.filter(n => n.observability.adversarySurface && !n.observability.quarantine);
+    if (!surfaces.length) {
+      logEvent("ADV", "No active adversary surfaces");
+      return;
+    }
+    const node = surfaces[Math.floor(Math.random() * surfaces.length)];
+    const kind = ["RF_JAM", "OPT_SPOOF", "KIN_SHOCK", "GAS_SPIKE", "AC_SURGE"][Math.floor(Math.random() * 5)];
+    const event = {
+      nodeId: node.id,
+      kind,
+      ts: new Date().toISOString()
+    };
+    logEvent("ADV", node.id + " " + kind + " " + event.ts, true);
+    node.meta.tags.push("ADV_" + kind);
+    node.observability.lastSeen = event.ts;
+    renderNodes();
+    if (backbone.selectedNodeId === node.id) selectNode(node.id);
+  }
+
+  // --- Wire up UI -----------------------------------------------------------
+
+  document.getElementById("applyBackboneBtn").onclick = applyBackboneState;
+  document.getElementById("injectAdversaryBtn").onclick = injectAdversaryCurrent;
+
+  document.getElementById("sendCmdBtn").onclick = () => {
+    if (!backbone.selectedNodeId) {
+      logEvent("ERR", "No node selected");
+      return;
+    }
+    const type = document.getElementById("cmdType").value;
+    let payload = {};
+    try {
+      payload = JSON.parse(document.getElementById("cmdPayload").value || "{}");
+    } catch (e) {
+      logEvent("ERR", "Invalid JSON payload");
+      return;
+    }
+    commandNode(backbone.selectedNodeId, type, payload);
+  };
+
+  // --- Init -----------------------------------------------------------------
+
+  renderNodes();
+  applyBackboneState();
+  logEvent("INFO", "Backbone console initialized");
+</script>
+</body>
+</html>
