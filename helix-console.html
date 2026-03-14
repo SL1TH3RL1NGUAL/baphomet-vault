@@ -1,0 +1,188 @@
+<!-- HELIX CONTROL PANEL -->
+<div id="helix-console" style="
+  background:#111;
+  color:#0f0;
+  padding:20px;
+  font-family:monospace;
+  border:2px solid #0f0;
+  width:420px;
+  border-radius:8px;
+">
+  <h3 style="margin-top:0;color:#0f0;">HELIX CONTROL PANEL</h3>
+
+  <!-- Identity Variables -->
+  <label>MSISDN Identity</label>
+  <input id="msisdn" value="4096667081" style="width:100%;margin-bottom:10px;">
+
+  <label>Hex Encoding</label>
+  <input id="hex" value="2B3134303936363637303831" style="width:100%;margin-bottom:10px;">
+
+  <label>Binary Encoding</label>
+  <textarea id="binary" style="width:100%;height:60px;margin-bottom:10px;">
+00101011 00110001 00110100 ...
+  </textarea>
+
+  <label>MQTT Topic</label>
+  <input id="topic" value="mesh/helix/state" style="width:100%;margin-bottom:10px;">
+
+  <label>Command</label>
+  <select id="command" style="width:100%;margin-bottom:10px;">
+    <option value="OBSERVE">OBSERVE</option>
+    <option value="ROUTE">ROUTE</option>
+    <option value="BIND">BIND</option>
+    <option value="SHARE">SHARE</option>
+    <option value="MASK">MASK</option>
+    <option value="AMPLIFY">AMPLIFY</option>
+    <option value="INVERT">INVERT</option>
+    <option value="FOCUS">FOCUS</option>
+    <option value="TRACE">TRACE</option>
+    <option value="FORK">FORK</option>
+  </select>
+
+  <button id="sendCommand" style="
+    width:100%;
+    padding:10px;
+    background:#0f0;
+    color:#000;
+    font-weight:bold;
+    border:none;
+    cursor:pointer;
+  ">SEND COMMAND</button>
+
+  <pre id="output" style="
+    background:#000;
+    color:#0f0;
+    padding:10px;
+    margin-top:15px;
+    height:120px;
+    overflow:auto;
+  "></pre>
+</div>
+
+<!-- MAP WINDOW -->
+<div id="map" style="
+  width:420px;
+  height:300px;
+  margin-top:20px;
+  border:2px solid #0f0;
+  border-radius:8px;
+"></div>
+
+<!-- HELM STATUS MONITOR -->
+<div id="helm-status" style="
+  width:420px;
+  height:150px;
+  margin-top:20px;
+  background:#111;
+  color:#0f0;
+  border:2px solid #0f0;
+  border-radius:8px;
+  padding:10px;
+  font-family:monospace;
+  overflow:auto;
+">
+  <h4 style="margin:0;color:#0f0;">helm.sh Status</h4>
+  <pre id="helmOutput">Waiting for Helm telemetry...</pre>
+</div>
+
+<!-- IPFS KUBO MONITOR -->
+<div id="ipfs-status" style="
+  width:420px;
+  height:150px;
+  margin-top:20px;
+  background:#111;
+  color:#0f0;
+  border:2px solid #0f0;
+  border-radius:8px;
+  padding:10px;
+  font-family:monospace;
+  overflow:auto;
+">
+  <h4 style="margin:0;color:#0f0;">IPFS Kubo Status</h4>
+  <pre id="ipfsOutput">Waiting for IPFS telemetry...</pre>
+</div>
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script>
+  // Initialize Map
+  const map = L.map('map').setView([29.7604, -95.3698], 12);
+
+  // Add Tile Layer
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19
+  }).addTo(map);
+
+  // Marker for TAP trace
+  let tapMarker = L.marker([29.7604, -95.3698]).addTo(map);
+
+  // Polyline for trace path
+  let tapPath = L.polyline([], { color: '#0f0' }).addTo(map);
+
+  // Update marker + path
+  function updateTapLocation(lat, lon) {
+    tapMarker.setLatLng([lat, lon]);
+    tapPath.addLatLng([lat, lon]);
+    map.setView([lat, lon], 14);
+  }
+
+  // SEND COMMAND BUTTON
+  document.getElementById("sendCommand").onclick = () => {
+    const msisdn = document.getElementById("msisdn").value;
+    const hex = document.getElementById("hex").value;
+    const binary = document.getElementById("binary").value.trim();
+    const topic = document.getElementById("topic").value;
+    const command = document.getElementById("command").value;
+
+    const payload = {
+      msisdn,
+      hex,
+      binary,
+      command,
+      timestamp: Date.now()
+    };
+
+    const out = document.getElementById("output");
+    out.textContent += `\n[HELIX] Command Prepared:\n${JSON.stringify(payload, null, 2)}\n`;
+
+    if (window.HELIX_MQTT) {
+      window.HELIX_MQTT.publish(topic, JSON.stringify(payload));
+      out.textContent += `[HELIX] Published to ${topic}\n`;
+    } else {
+      out.textContent += `[HELIX] MQTT not connected\n`;
+    }
+  };
+
+  // MQTT Listener for TAP trace + Helm + IPFS
+  if (window.HELIX_MQTT) {
+    window.HELIX_MQTT.subscribe("mesh/tap/trace");
+    window.HELIX_MQTT.subscribe("mesh/helm/status");
+    window.HELIX_MQTT.subscribe("mesh/ipfs/kubo");
+
+    window.HELIX_MQTT.on("message", (topic, payload) => {
+      const msg = payload.toString();
+
+      if (topic === "mesh/tap/trace") {
+        try {
+          const data = JSON.parse(msg);
+          if (data.lat && data.lon) updateTapLocation(data.lat, data.lon);
+        } catch (e) {
+          console.error("Invalid TAP trace payload", e);
+        }
+      }
+
+      if (topic === "mesh/helm/status") {
+        document.getElementById("helmOutput").textContent = msg;
+      }
+
+      if (topic === "mesh/ipfs/kubo") {
+        document.getElementById("ipfsOutput").textContent = msg;
+      }
+    });
+  }
+</script>
+
