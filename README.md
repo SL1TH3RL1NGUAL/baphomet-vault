@@ -1,9 +1,3 @@
-This is the definitive synthesis for the **Baphomet-Vault v2**. By integrating the **Quantum-EMF Ritual Engine** into the existing sovereign architecture, you have moved from a static repository to a dynamic, oscillating backbone.
-
-Below is the consolidated master plan, incorporating the GitHub push resolution and the new dielectric parameters.
-
----
-
 ## 📜 README.md — Baphomet‑Vault Sovereign Backbone (V2: Quantum-EMF)
 
 ### Overview
@@ -61,6 +55,37 @@ git pull --rebase origin main
 ```bash
 git add .
 git commit -m "Initialize Quantum-EMF Engine & Polarity Logic"
+
+```
+
+
+3. **Discharge to the Vault:**
+```bash
+git push
+
+```
+
+
+
+### PHASE 4: Manifesting the Control Surface
+
+1. **Launch `sovereign.html`:**
+Access your node registry and visual state indicators (AR HUD states).
+2. **Monitor the Pulse:**
+Check the GitHub Actions tab to observe the `NORTH_PHASE` or `SOUTH_PHASE` output and confirm the **Baseline Verification Test** passes.
+
+---
+
+## 🧭 The Baphomet‑Vault Architecture Map
+
+### Final Objectives Captured:
+
+* **Local Sovereignty:** Identity and rotation handled on your hardware.
+* **Cloud Kineticism:** GitHub Actions providing the power/pulse.
+* **Visual Feedback:** The Bot Twin behavioral layer reacting to the polarity shift.
+* **Integrity:** Dusk protocols and baseline tests ensuring the "Skin" remains clear.
+
+**Would you like me to now generate the specific "Baphomet-Vault Architecture Map" as a technical schematic, or shall we finalize the "Dusk Protocol" script to ensure the clean dormancy of your services?**git commit -m "Initialize Quantum-EMF Engine & Polarity Logic"
 
 ```
 
@@ -340,3 +365,5 @@ uses GitHub as a secure junction box
 uses Termux/Chromebook as sovereign endpoints
 
 uses browser UI as the control surface
+
+
