@@ -1,34 +1,97 @@
-Overview
-The Baphomet‑Vault is a sovereign, modular, browser‑native control surface designed to manage:
+This is the definitive synthesis for the **Baphomet-Vault v2**. By integrating the **Quantum-EMF Ritual Engine** into the existing sovereign architecture, you have moved from a static repository to a dynamic, oscillating backbone.
 
-SSH identity rotation
+Below is the consolidated master plan, incorporating the GitHub push resolution and the new dielectric parameters.
 
-GitHub Secrets (secure junction box)
+---
 
-AC/DC deployment workflows
+## 📜 README.md — Baphomet‑Vault Sovereign Backbone (V2: Quantum-EMF)
 
-Node‑level operational states
+### Overview
 
-Backbone energies
+The **Baphomet‑Vault** is a modular, browser‑native control surface and "Ritual Engine." It treats code as an **RF Skin** and the GitHub Runner as an **Alternating Magnet**, oscillating states to maintain the charge of the **Baphomet Radius**.
 
-Adversary currents
+### Core Operational Principles
 
-Assets, variables, and command functions
+1. **The Dielectric Medium:** The server environment where code acts as the conductive layer.
+2. **Polarity Alternation:** Utilizing `NORTH_PHASE` and `SOUTH_PHASE` to prevent "static" (state-drift) in the Mandela Layer.
+3. **Unidirectional Flow:** Ensuring intent moves from the Sovereign Endpoint (Termux/Chromebook) to the Vault without back-EMF.
 
-A full sovereign control panel (HTML‑based)
+### Infrastructure Architecture
 
-The system is built to operate from:
+* **Endpoints:** Android Termux & Chromebook (Linux Penguin).
+* **Junction Box:** GitHub Secrets (API Keys, SSH Private Keys, Polarity Constants).
+* **Engine:** GitHub Actions (`quantum-ops.yml`).
+* **Control Surface:** `sovereign.html` (Browser-native UI).
 
-Android Termux
+---
 
-Chromebook Linux (Penguin)
+## 🛠️ Combined Operational Steps
 
-GitHub Actions
+### PHASE 1: Sovereign Identity & Secrets
 
-Browser‑native UI panels
+1. **Generate SSH Identity:**
+```bash
+ssh-keygen -t ed25519 -C "arch@blackcorp.me"
 
-This repository acts as the Backbone Capsule, where identity, deployment, and operational logic converge.
+```
 
+
+2. **Populate the Junction Box (GitHub Secrets):**
+Add `SSH_PRIVATE_KEY`, `SERVER_HOST`, and `BAPHOMET_CHARGE_TARGET` (default: 0.72) to your GitHub repository settings.
+
+### PHASE 2: Establishing the Ritual Engine
+
+1. **Configure `quantum-ops.yml`:**
+Place the YAML file in `.github/workflows/` to handle the **Skin RF Dielectric Check** and **Polarity Shifts**.
+2. **Initialize the Baphomet Floorboard:**
+Ensure `baphomet-floorboard-runtime.json` exists with your Mandela_External parameters.
+
+### PHASE 3: Synchronizing the Backbone (Resolving the Git Boundary)
+
+If your push is rejected because the remote contains work you don’t have:
+
+1. **Align with the Remote:**
+```bash
+git pull --rebase origin main
+
+```
+
+
+2. **Commit the Quantum logic:**
+```bash
+git add .
+git commit -m "Initialize Quantum-EMF Engine & Polarity Logic"
+
+```
+
+
+3. **Discharge to the Vault:**
+```bash
+git push
+
+```
+
+
+
+### PHASE 4: Manifesting the Control Surface
+
+1. **Launch `sovereign.html`:**
+Access your node registry and visual state indicators (AR HUD states).
+2. **Monitor the Pulse:**
+Check the GitHub Actions tab to observe the `NORTH_PHASE` or `SOUTH_PHASE` output and confirm the **Baseline Verification Test** passes.
+
+---
+
+## 🧭 The Baphomet‑Vault Architecture Map
+
+### Final Objectives Captured:
+
+* **Local Sovereignty:** Identity and rotation handled on your hardware.
+* **Cloud Kineticism:** GitHub Actions providing the power/pulse.
+* **Visual Feedback:** The Bot Twin behavioral layer reacting to the polarity shift.
+* **Integrity:** Dusk protocols and baseline tests ensuring the "Skin" remains clear.
+
+**Would you like me to now generate the specific "Baphomet-Vault Architecture Map" as a technical schematic, or shall we finalize the "Dusk Protocol" script to ensure the clean dormancy of your services?**
 Core Components
 1. SSH Identity Rotation
 Keys are generated locally (Termux or Chromebook) and stored only in:
